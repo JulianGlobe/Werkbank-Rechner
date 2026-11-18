@@ -30,10 +30,10 @@
     $('badge').textContent=chosen.length;$('results').hidden=!chosen.length;$('plan-empty').hidden=!!chosen.length;
     $('selection').innerHTML=chosen.map(r=>`<div class="selected-row"><span><b>${fmt(plan[r.id])}×</b> ${r.name}</span><button data-remove="${r.id}" aria-label="${r.name} aus Plan entfernen">×</button></div>`).join('');
     $('mode-note').textContent=mode==='base'?'Alle Vorprodukte aufgelöst. Ganze Herstellvorgänge werden gemeinsam aufgerundet.':'Zutaten für die ausgewählten Rezepte, wenn du deren Vorprodukte bereits besitzt.';
-    const materials=result[mode];$('materials').innerHTML=Object.entries(materials).sort(([a],[b])=>a.localeCompare(b,'de')).map(([name,n])=>`<div><dt>${name}</dt><dd>${name==='Geld'?`${fmt(n)} $`:fmt(n)}</dd></div>`).join('');
+    const materials=result[mode];$('materials').innerHTML=Object.entries(materials).sort(([a],[b])=>a.localeCompare(b,'de')).map(([name,n])=>`<div><dt class="${name==='Metallerz'?'ore-material':''}">${name}</dt><dd>${name==='Geld'?`${fmt(n)} $`:fmt(n)}</dd></div>`).join('');
     $('steps').innerHTML=result.steps.map(s=>`<p><b>${fmt(s.batches)}×</b> ${s.name}<span>→ ${fmt(s.made)} Stück · ${duration(s.seconds)}</span></p>`).join('');
     $('surplus').innerHTML=Object.keys(result.surplus).length?`<p class="small">Übrig nach dem gesamten Plan: ${Object.entries(result.surplus).map(([name,n])=>`${fmt(n)}× ${name}`).join(', ')}.</p>`:'<p class="small">Keine Restmengen.</p>';
-    $('time').textContent=duration(result.seconds);$('vip-note').hidden=!chosen.some(r=>r.vip);
+    $('time').textContent=totalDuration(result);$('time-note').textContent=result.hasUnknownTime?'inkl. Vorprodukte; Zeit für Metallherstellung noch unbekannt':'inklusive aller Vorprodukte, nacheinander';$('vip-note').hidden=!chosen.some(r=>r.vip);
     $('base-view').classList.toggle('active',mode==='base');$('direct-view').classList.toggle('active',mode==='direct');$('base-view').setAttribute('aria-pressed',mode==='base');$('direct-view').setAttribute('aria-pressed',mode==='direct');
   }
   $('selection').onclick=e=>{const b=e.target.closest('[data-remove]');if(b)setQty(b.dataset.remove,0);};
@@ -43,4 +43,5 @@
   document.addEventListener('keydown',e=>{if(e.key==='/'&&!['INPUT','TEXTAREA'].includes(document.activeElement.tagName)){e.preventDefault();$('search').focus();}});
   renderCats();renderRecipes();renderPlan();
 })();
+
 
