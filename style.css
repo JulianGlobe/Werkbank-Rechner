@@ -6,3 +6,9 @@
 @media(prefers-reduced-motion:reduce){*{transition:none!important}}
 
 .recipe-scope{display:block;color:#a08383;font:600 11px var(--heading);letter-spacing:1px;margin-top:9px}.raw-materials{font:600 15px/1.5 var(--heading);color:#ddd;margin:5px 0 8px}.raw-materials>span{color:#999}.recipe-time{line-height:1.7;display:block}.recipe-time b{color:#eee;font-weight:600}.recipe-leftover{display:block;color:#ff8787;font:600 13px var(--heading);margin-top:5px}.recipe{min-height:150px}.recipe-info{overflow-wrap:anywhere}@media(max-width:480px){.raw-materials{font-size:13px}.recipe-scope{font-size:10px}.recipe-time{font-size:10px}.recipe{align-items:flex-start}.item-icon{margin-top:7px}.quantity{margin-top:7px}}
+/* Readable manufacturing steps in the plan panel. */
+#results details summary{font-size:15px;color:#c7c2c2;padding:5px 0}
+#steps p{font-size:17px;line-height:1.6;color:#e5e1e1;margin:0;padding:15px 0}
+#steps p b{font-size:18px}
+#steps p span{font-size:14px;line-height:1.7;color:#aaa4a4;margin-top:4px}
+#surplus .small{font-size:13px;line-height:1.7;margin:13px 0 0}
