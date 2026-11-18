@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#141617">
+  <meta name="description" content="Alle 34 Werkbank-Rezepte für deinen GTA-RP-Alltag. Plane Mengen und berechne die Grundmaterialien.">
+  <title>Werkbank · Crafting-Rechner</title>
+  <link rel="stylesheet" href="style.css"><script src="data.js" defer></script><script src="app.js" defer></script>
+</head>
+<body>
+  <header class="topbar"><a class="brand" href="./"><span class="brandmark" aria-hidden="true">W</span> WERKBANK<span class="brand-sub">GTA RP / CRAFTING</span></a><span class="local"><i></i> Speichert nur in deinem Browser</span></header>
+  <main>
+    <section class="hero"><div><p class="eyebrow">DEIN MATERIAL. DEIN PLAN.</p><h1>Weniger rechnen.<br><span>Mehr herstellen.</span></h1><p class="intro">Finde dein Rezept, wähle die Stückzahl und sieh sofort,<br class="desktop"> was du an der Werkbank brauchst.</p></div><div class="hero-stamp" aria-hidden="true"><span>CRAFTING<br>FIELD GUIDE</span><strong>34</strong><small>REZEPTE / 18.11.2026</small></div></section>
+    <div class="workspace">
+      <section class="catalog" aria-label="Rezeptübersicht">
+        <div class="section-title"><h2>Das Rezeptebuch</h2><span id="count">34 Rezepte</span></div>
+        <label class="search"><span aria-hidden="true">⌕</span><input id="search" type="search" placeholder="Rezept oder Material suchen …" aria-label="Rezept oder Material suchen"><kbd>/</kbd></label>
+        <nav id="categories" aria-label="Kategorien"></nav>
+        <div class="catalog-note"><span>REZEPT / MATERIAL PRO VORGANG</span><span>WUNSCHMENGE</span></div>
+        <div id="recipes"></div>
+        <p id="empty" hidden>Kein Rezept gefunden. Probiere einen anderen Suchbegriff.</p>
+      </section>
+      <aside class="planner" aria-label="Herstellungsplan">
+        <div class="plan-top"><span class="eyebrow">ALLES AUF EINEN BLICK</span><h2>Dein Herstellungsplan<span id="badge">0</span></h2><p>Trage links die gewünschten Stückzahlen ein.</p></div>
+        <div id="selection"></div>
+        <div id="plan-empty"><span aria-hidden="true">＋</span><h3>Was steht heute an?</h3><p>Deine Auswahl und die gesamte<br>Materialliste erscheinen hier.</p></div>
+        <div id="results" hidden>
+          <div class="view-tabs" role="group" aria-label="Materialansicht"><button id="base-view" class="active" aria-pressed="true">Grundmaterialien</button><button id="direct-view" aria-pressed="false">Direkte Zutaten</button></div>
+          <p id="mode-note" class="small"></p><dl id="materials"></dl>
+          <details><summary>Herstellungsschritte & Restmengen</summary><div id="steps"></div><div id="surplus"></div></details>
+          <div class="time"><span>Gesamte Herstellzeit<small>inklusive aller Vorprodukte, nacheinander</small></span><strong id="time"></strong></div>
+          <p id="vip-note" class="vip-note" hidden>Lagerkiste T4 benötigt VIP Silber.</p>
+          <div class="plan-actions"><button id="copy" class="primary">Materialliste kopieren</button><button id="reset" class="text-button">Plan leeren</button></div>
+        </div>
+        <p class="save-note" id="save-note">Dein Plan bleibt auf diesem Gerät erhalten.</p>
+      </aside>
+    </div>
+    <footer><span>WERKBANK <b>/</b> Dein Begleiter fürs Crafting.</span><span>Nach deinen 34 Screenshots · Stand 18.11.2026</span></footer>
+  </main><div id="toast" role="status" aria-live="polite"></div>
+</body></html>
