@@ -1,5 +1,6 @@
 (function (root) {
   const rows = [
+    ['metall','Metall','Materialien',1,null,{'Metallerz':10}],
     ['metallplatten','Metallplatten','Materialien',1,3,{'Metall':2}],
     ['verstaerkt','Verstärkte Platten','Materialien',1,8,{'Metallplatten':6}],
     ['titan','Titanplatten','Materialien',1,15,{'Verstärkte Platten':4}],
@@ -62,11 +63,11 @@
       if(!qty) continue;
       const batches=Math.ceil(qty/r.output), made=batches*r.output;
       if(made>qty) surplus[r.name]=made-qty;
-      steps.push({name:r.name,batches,made,seconds:batches*r.seconds,vip:r.vip});
+      steps.push({name:r.name,batches,made,seconds:r.seconds===null?null:batches*r.seconds,vip:r.vip});
       for(const [name,n] of Object.entries(r.ingredients)) add(demand,name,n*batches);
     }
     for(const [name,n] of Object.entries(demand)) if(!byName[name]) base[name]=n;
-    return {direct,base,surplus,steps:steps.reverse(),seconds:steps.reduce((s,r)=>s+r.seconds,0)};
+    return {direct,base,surplus,steps:steps.reverse(),seconds:steps.reduce((s,r)=>s+(r.seconds||0),0),hasUnknownTime:steps.some(r=>r.seconds===null)};
   }
   const api={recipes,calculate};
   root.Workbench=api;
