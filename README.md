@@ -11,7 +11,7 @@ Statische Website mit 34 Werkbank-Rezepten aus den Screenshots vom 18.11.2026.
 - Rezept- und Materialsuche, Kategorien und gewünschte Stückzahlen.
 - Gemeinsamer Herstellungsplan mit Grundmaterialien oder direkten Zutaten.
 - Ganze Herstellvorgänge, gemeinsame Vorprodukte, Restmengen und Herstellzeit inklusive Vorprodukten.
-- Materialliste kopieren (alternativ Textdatei) und Plan im lokalen Browserspeicher behalten.
+- Materialbedarf und Herstellzeit direkt pro Rezept und als Gesamtübersicht; Plan im lokalen Browserspeicher behalten.
 - Responsive Oberfläche für PC und Handy. Keine externen Schriften, Tracker oder Bibliotheken.
 
 Die Wunschmenge ist die Zahl der Gegenstände, die am Ende vorhanden sein sollen. Beispiel: 6 Laborgläser brauchen 2 Vorgänge und ergeben 10 Gläser; 4 bleiben übrig. Für 1 GPS und 1 Racing Tablet werden gemeinsam 14 Kupfer benötigt. Vorräte werden nicht abgezogen. Alle Zeiten sind die Summe der einzelnen Vorgänge bei Herstellung nacheinander; Reisen und Bedienung sind nicht enthalten.
