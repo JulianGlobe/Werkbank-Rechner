@@ -13,7 +13,7 @@
     const qty=plan[r.id]||r.output,batches=Math.ceil(qty/r.output),result=calculate({[r.id]:qty});
     const materials=Object.entries(r.ingredients).map(([name,n])=>`<span>${amount(name,n*batches)} ${name==='Geld'?'':name}</span>`).join('<span class="plus">+</span>');
     const base=Object.entries(result.base).map(([name,n])=>`${amount(name,n)} ${name==='Geld'?'':name}`).join(' + ');
-    return `<span class="recipe-scope">${plan[r.id]?'FÜR '+fmt(qty)+' STÜCK':'PRO VORGANG · '+fmt(r.output)+' STÜCK'}</span><p class="ingredients">${materials}</p><p class="raw-materials"><span>Grundmaterialien:</span> ${base}</p><span class="recipe-time">Herstellung: <b>${duration(batches*r.seconds)}</b> · inkl. Vorprodukte: <b>${duration(result.seconds)}</b></span>${batches*r.output>qty?'<span class="recipe-leftover">Ausgabe: '+fmt(batches*r.output)+' Stück · '+fmt(batches*r.output-qty)+' übrig</span>':''}`;
+    return `<span class="recipe-scope">${plan[r.id]?'FÜR '+fmt(qty)+' STÜCK':'PRO VORGANG · '+fmt(r.output)+' STÜCK'}</span><p class="ingredients">${materials}</p><p class="raw-materials"><span>Grundmaterialien:</span> ${base}</p><span class="recipe-time">Herstellung: <b>${duration(r.seconds===null?null:batches*r.seconds)}</b> · inkl. Vorprodukte: <b>${totalDuration(result)}</b></span>${batches*r.output>qty?'<span class="recipe-leftover">Ausgabe: '+fmt(batches*r.output)+' Stück · '+fmt(batches*r.output-qty)+' übrig</span>':''}`;
   }
   function renderRecipes(){
     const term=$('search').value.trim().toLocaleLowerCase('de');
@@ -23,7 +23,8 @@
   }
   $('recipes').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;if(b.dataset.plus)setQty(b.dataset.plus,(plan[b.dataset.plus]||0)+1);if(b.dataset.minus)setQty(b.dataset.minus,(plan[b.dataset.minus]||0)-1);});
   $('recipes').addEventListener('input',e=>{if(e.target.dataset.qty)setQty(e.target.dataset.qty,e.target.value);});
-  function duration(n){return n<60?`${n} Sek.`:`${Math.floor(n/60)} Min. ${n%60} Sek.`;}
+  function totalDuration(result){return result.hasUnknownTime&&result.seconds===0?"Zeit unbekannt":duration(result.seconds)+(result.hasUnknownTime?" + unbekannt":"");}
+  function duration(n){if(n===null)return "Zeit unbekannt";return n<60?`${n} Sek.`:`${Math.floor(n/60)} Min. ${n%60} Sek.`;}
   function renderPlan(){
     const chosen=recipes.filter(r=>plan[r.id]),result=calculate(plan),total=chosen.reduce((s,r)=>s+plan[r.id],0);
     $('badge').textContent=chosen.length;$('results').hidden=!chosen.length;$('plan-empty').hidden=!!chosen.length;
