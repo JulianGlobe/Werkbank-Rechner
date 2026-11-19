@@ -2,6 +2,8 @@
 (() => {
   const {recipes,calculate}=Workbench, $=id=>document.getElementById(id);
   const fmt=n=>n.toLocaleString('de-DE'), amount=(name,n)=>name==='Geld'?`${fmt(n)} $`:`${fmt(n)} ×`;
+  const materialIcons={'Metallerz':'metallerz','Kevlarfasern':'kevlarfasern','Kevlarmaterial':'kevlar','Schusssichere Weste':'weste'};
+  function materialIcon(name){const id=materialIcons[name];return id?`<span class="material-symbol material-${id}" aria-hidden="true" style="background-image:url(item-${id}.png)"></span>`:'';}
   const key='werkbank-plan-v1'; let plan={},category='Alle',mode='base',timer;
   try { const saved=JSON.parse(localStorage.getItem(key)||'{}'); if(saved&&typeof saved==='object') for(const r of recipes) if(Number.isSafeInteger(saved[r.id])&&saved[r.id]>0&&saved[r.id]<=999999) plan[r.id]=saved[r.id]; } catch {}
   function save(){try{localStorage.setItem(key,JSON.stringify(plan));}catch{$('save-note').textContent='Speichern im Browser ist hier nicht verfügbar.';}}
@@ -30,10 +32,10 @@
     $('badge').textContent=chosen.length;$('results').hidden=!chosen.length;$('plan-empty').hidden=!!chosen.length;
     $('selection').innerHTML=chosen.map(r=>`<div class="selected-row"><span><b>${fmt(plan[r.id])}×</b> ${r.name}</span><button data-remove="${r.id}" aria-label="${r.name} aus Plan entfernen">×</button></div>`).join('');
     $('mode-note').textContent=mode==='base'?'Alle Vorprodukte aufgelöst. Ganze Herstellvorgänge werden gemeinsam aufgerundet.':'Zutaten für die ausgewählten Rezepte, wenn du deren Vorprodukte bereits besitzt.';
-    const materials=result[mode];$('materials').innerHTML=Object.entries(materials).sort(([a],[b])=>a.localeCompare(b,'de')).map(([name,n])=>`<div><dt class="${name==='Metallerz'?'ore-material':''}">${name}</dt><dd>${name==='Geld'?`${fmt(n)} $`:fmt(n)}</dd></div>`).join('');
+    const materials=result[mode];$('materials').innerHTML=Object.entries(materials).sort(([a],[b])=>a.localeCompare(b,'de')).map(([name,n])=>`<div><dt class="material-name">${materialIcon(name)}${name}</dt><dd>${name==='Geld'?`${fmt(n)} $`:fmt(n)}</dd></div>`).join('');
     $('steps').innerHTML=result.steps.map(s=>`<p><b>${fmt(s.batches)}×</b> ${s.name}<span>→ ${fmt(s.made)} Stück · ${duration(s.seconds)}</span></p>`).join('');
     $('surplus').innerHTML=Object.keys(result.surplus).length?`<p class="small">Übrig nach dem gesamten Plan: ${Object.entries(result.surplus).map(([name,n])=>`${fmt(n)}× ${name}`).join(', ')}.</p>`:'<p class="small">Keine Restmengen.</p>';
-    $('time').textContent=totalDuration(result);$('time-note').textContent=result.hasUnknownTime?'inkl. Vorprodukte; Zeit für Metallherstellung noch unbekannt':'inklusive aller Vorprodukte, nacheinander';$('vip-note').hidden=!chosen.some(r=>r.vip);
+    $('time').textContent=totalDuration(result);$('time-note').textContent=result.hasUnknownTime?'Herstellzeit unbekannt: '+result.steps.filter(s=>s.seconds===null).map(s=>s.name).join(', '):'inklusive aller Vorprodukte, nacheinander';$('vip-note').hidden=!chosen.some(r=>r.vip);
     $('base-view').classList.toggle('active',mode==='base');$('direct-view').classList.toggle('active',mode==='direct');$('base-view').setAttribute('aria-pressed',mode==='base');$('direct-view').setAttribute('aria-pressed',mode==='direct');
   }
   $('selection').onclick=e=>{const b=e.target.closest('[data-remove]');if(b)setQty(b.dataset.remove,0);};

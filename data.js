@@ -1,5 +1,7 @@
 (function (root) {
   const rows = [
+    ['kevlar','Kevlarmaterial','Materialien',1,null,{'Kevlarfasern':8}],
+    ['weste','Schusssichere Weste','Ausrüstung',1,null,{'Kevlarmaterial':6}],
     ['metall','Metall','Materialien',1,null,{'Metallerz':10}],
     ['metallplatten','Metallplatten','Materialien',1,3,{'Metall':2}],
     ['verstaerkt','Verstärkte Platten','Materialien',1,8,{'Metallplatten':6}],

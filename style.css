@@ -16,3 +16,5 @@
 .item-metall{background-image:none!important;display:grid;place-items:center}.item-metall:before{content:"▰";color:#a5a9aa;font-size:42px}.time strong{white-space:normal;text-align:right;max-width:52%;font-size:24px}.time small{line-height:1.6}
 
 .ore-material{display:flex;align-items:center;gap:10px}.ore-material:before{content:"";display:block;flex-shrink:0;width:40px;height:40px;background:url("item-metallerz.png") center/contain no-repeat}
+
+.item-kevlar{background-size:185%;background-position:50% 90%}.item-weste{background-size:170%;background-position:50% 100%}.material-name{display:flex;align-items:center;gap:10px}.material-symbol{display:block;flex-shrink:0;width:42px;height:42px;background-repeat:no-repeat;background-size:contain;background-position:center;border-radius:3px}.material-kevlar,.material-kevlarfasern{background-size:185%;background-position:50% 90%}.material-weste{background-size:170%;background-position:50% 100%}

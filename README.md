@@ -1,6 +1,6 @@
 # Werkbank-Rechner
 
-Statische Website mit 34 Werkbank-Rezepten aus den Screenshots vom 18.11.2026.
+Statische Website mit 37 Rezepten aus den Screenshots und ergänzten Angaben. Stand 19.11.2026.
 
 ## Lokal starten
 
@@ -25,3 +25,5 @@ Diese Dateien im Hauptverzeichnis eines Repositorys ablegen. Unter **Settings �
 `data.js` enthält die Rezepte in der Reihenfolge ID, Name, Kategorie, Ausgabemenge, Zeit in Sekunden, Materialien und optional Voraussetzung. Die Rezeptnamen verknüpfen Vorprodukte miteinander.
 
 Die Werte dienen ausschließlich der Spielplanung in GTA RP und beschreiben keine realen Herstellungsverfahren.
+
+Ergänzte Rezepte: 10 Metallerz → 1 Metall; 8 Kevlarfasern → 1 Kevlarmaterial; 6 Kevlarmaterial → 1 schusssichere Weste. Die nicht angegebenen Herstellzeiten werden als unbekannt ausgewiesen.
