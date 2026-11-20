@@ -2,7 +2,7 @@
 (() => {
   const {recipes,calculate}=Workbench, $=id=>document.getElementById(id);
   const fmt=n=>n.toLocaleString('de-DE'), amount=(name,n)=>name==='Geld'?`${fmt(n)} $`:`${fmt(n)} ×`;
-  const materialIcons={'Metallerz':'metallerz','Kevlarfasern':'kevlarfasern','Kevlarmaterial':'kevlar','Schusssichere Weste':'weste'};
+  const materialIcons={'Kupfer':'kupfer','Kupfererz':'kupfererz','Metallerz':'metallerz','Kevlarfasern':'kevlarfasern','Kevlarmaterial':'kevlar','Schusssichere Weste':'weste'};
   function materialIcon(name){const id=materialIcons[name];return id?`<span class="material-symbol material-${id}" aria-hidden="true" style="background-image:url(item-${id}.png)"></span>`:'';}
   const key='werkbank-plan-v1'; let plan={},category='Alle',mode='base',timer;
   try { const saved=JSON.parse(localStorage.getItem(key)||'{}'); if(saved&&typeof saved==='object') for(const r of recipes) if(Number.isSafeInteger(saved[r.id])&&saved[r.id]>0&&saved[r.id]<=999999) plan[r.id]=saved[r.id]; } catch {}

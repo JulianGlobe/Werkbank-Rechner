@@ -1,6 +1,6 @@
 # Werkbank-Rechner
 
-Statische Website mit 37 Rezepten aus den Screenshots und ergänzten Angaben. Stand 19.11.2026.
+Statische Website mit 38 Rezepten aus den Screenshots und ergänzten Angaben. Stand 20.11.2026.
 
 ## Lokal starten
 
@@ -27,3 +27,5 @@ Diese Dateien im Hauptverzeichnis eines Repositorys ablegen. Unter **Settings �
 Die Werte dienen ausschließlich der Spielplanung in GTA RP und beschreiben keine realen Herstellungsverfahren.
 
 Ergänzte Rezepte: 10 Metallerz → 1 Metall; 8 Kevlarfasern → 1 Kevlarmaterial; 6 Kevlarmaterial → 1 schusssichere Weste. Die nicht angegebenen Herstellzeiten werden als unbekannt ausgewiesen.
+
+Kupfer: 10 Kupfererz → 1 Kupfer. Kupferbasierte Rezepte werden bis zum Erz aufgelöst. Die Herstellzeit ist noch unbekannt.

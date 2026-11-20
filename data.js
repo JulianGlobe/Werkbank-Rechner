@@ -1,5 +1,6 @@
 (function (root) {
   const rows = [
+    ['kupfer','Kupfer','Materialien',1,null,{'Kupfererz':10}],
     ['kevlar','Kevlarmaterial','Materialien',1,null,{'Kevlarfasern':8}],
     ['weste','Schusssichere Weste','Ausrüstung',1,null,{'Kevlarmaterial':6}],
     ['metall','Metall','Materialien',1,null,{'Metallerz':10}],
